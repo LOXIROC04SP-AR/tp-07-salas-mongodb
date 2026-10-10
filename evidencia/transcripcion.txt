@@ -1,0 +1,80 @@
+TRANSCRIPCION DE TERMINAL (sin credenciales)
+Base: reservas_salas_u7 - MongoDB Atlas Free (M0)
+
+--- Conexion valida ---
+> node --env-file=.env scripts/comprobar-conexion.js
+Conexión confirmada con MongoDB (base: reservas_salas_u7).
+No se crearon reservas.
+
+--- Ensayo de persistencia (cada comando es un proceso distinto) ---
+> node --env-file=.env scripts/listar-reservas.js
+Reservas en la base:
+- 6aca845888da765be84d3e46 | Ana Prueba | Sala Norte | 2026-11-02 | Mañana | 3 pers.
+Cantidad recuperada: 1
+
+> node --env-file=.env scripts/crear-reserva.js
+Reserva guardada. _id: 6aca849c180580d274cd021e
+
+> node --env-file=.env scripts/listar-reservas.js
+Reservas en la base:
+- 6aca845888da765be84d3e46 | Ana Prueba | Sala Norte | 2026-11-02 | Mañana | 3 pers.
+- 6aca849c180580d274cd021e | Ana Prueba | Sala Norte | 2026-11-02 | Mañana | 3 pers.
+Cantidad recuperada: 2
+
+> node --env-file=.env scripts/listar-reservas.js
+Reservas en la base:
+- 6aca845888da765be84d3e46 | Ana Prueba | Sala Norte | 2026-11-02 | Mañana | 3 pers.
+- 6aca849c180580d274cd021e | Ana Prueba | Sala Norte | 2026-11-02 | Mañana | 3 pers.
+Cantidad recuperada: 2
+
+--- Pruebas inválidas (un campo cambiado por vez) ---
+estudiante "":
+RECHAZADA: la reserva no es válida. No se guardó nada.
+Tipo de problema: ValidationError
+- Revisar "estudiante" (required): El estudiante es obligatorio
+
+email "ana.prueba.ejemplo.com":
+- Revisar "email" (regexp): El email debe contener @
+
+sala "Sala Este":
+- Revisar "sala" (enum): Sala no permitida: Sala Este
+
+turno "Madrugada":
+- Revisar "turno" (enum): Turno no permitido: Madrugada
+
+fecha "":
+- Revisar "fecha" (required): La fecha es obligatoria
+
+personas 0:
+- Revisar "personas" (min): Debe haber al menos 1 persona
+
+personas 7:
+- Revisar "personas" (max): No puede haber más de 6 personas
+
+personas 2.5:
+- Revisar "personas" (user defined): La cantidad de personas debe ser un número entero
+
+personas "abc":
+- Revisar "personas" (Number): Cast to Number failed for value "abc" (type string) at path "personas" for model "Reserva"
+
+--- Cantidad despues de las pruebas inválidas ---
+> node --env-file=.env scripts/listar-reservas.js
+Cantidad recuperada: 2
+
+--- Variable vacía (MONGODB_URI=) ---
+> node --env-file=.env scripts/comprobar-conexion.js
+FALLÓ la conexión. No se confirmó nada.
+Error: Error
+Detalle: Falta la variable MONGODB_URI. Copiar .env.example a .env y completarla.
+
+--- Contraseña incorrecta temporal ---
+> node --env-file=.env scripts/comprobar-conexion.js
+FALLÓ la conexión. No se confirmó nada.
+Error: MongoServerError
+Código: 8000
+Detalle: bad auth : authentication failed
+
+--- URI restaurada ---
+> node --env-file=.env scripts/comprobar-conexion.js
+Conexión confirmada con MongoDB (base: reservas_salas_u7).
+No se crearon reservas.

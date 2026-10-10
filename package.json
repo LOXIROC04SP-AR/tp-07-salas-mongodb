@@ -1,0 +1,33 @@
+{
+  "name": "tp-07-salas-mongodb",
+  "version": "1.0.0",
+  "description": "Trabajo practico 07 - Persistencia inicial de reservas de salas de estudio con MongoDB y Mongoose",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:vacio": "node src/index.js --vacio",
+    "start:local": "node --env-file=.env src/index.js",
+    "matriz": "node scripts/matriz.js",
+    "conexion": "node --env-file=.env scripts/comprobar-conexion.js",
+    "crear": "node --env-file=.env scripts/crear-reserva.js",
+    "listar": "node --env-file=.env scripts/listar-reservas.js",
+    "format": "prettier --write src scripts",
+    "format:check": "prettier --check src scripts",
+    "lint": "eslint src scripts",
+    "check": "npm run format:check && npm run lint"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-ejs-layouts": "^2.5.1",
+    "mongoose": "^9.11.1",
+    "morgan": "^1.12.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "prettier": "^3.9.9"
+  }
+}

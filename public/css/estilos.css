@@ -1,0 +1,270 @@
+:root {
+  --fondo: #f5f7f6;
+  --texto: #1d2b2a;
+  --texto-suave: #52615f;
+  --principal: #0f6b5c;
+  --principal-oscuro: #0a4d42;
+  --borde: #cfd9d6;
+  --tarjeta: #ffffff;
+  --error-fondo: #fdecec;
+  --error-borde: #b3261e;
+  --foco: #f2a900;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+  background: var(--fondo);
+  color: var(--texto);
+}
+
+a {
+  color: var(--principal);
+}
+
+a:hover {
+  color: var(--principal-oscuro);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 2px;
+}
+
+.salto {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--tarjeta);
+  padding: 0.5rem 1rem;
+}
+
+.salto:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+.encabezado {
+  background: var(--principal);
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.marca {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.menu a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.contenido {
+  flex: 1;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem;
+}
+
+h1 {
+  margin-top: 0.5rem;
+  font-size: 1.9rem;
+}
+
+.seccion {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+.boton {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  background: var(--principal);
+  color: #ffffff;
+  border: 2px solid var(--principal);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background: var(--principal-oscuro);
+  border-color: var(--principal-oscuro);
+  color: #ffffff;
+}
+
+.boton.secundario {
+  background: transparent;
+  color: var(--principal);
+}
+
+.boton.secundario:hover {
+  background: #e3eeeb;
+  color: var(--principal-oscuro);
+}
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.tarjeta {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+
+.tarjeta h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.tarjeta p {
+  margin: 0.25rem 0;
+}
+
+.vacio {
+  background: var(--tarjeta);
+  border: 1px dashed var(--borde);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--texto-suave);
+}
+
+.datos {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.5rem 1.5rem;
+}
+
+.datos dt {
+  font-weight: 700;
+}
+
+.datos dd {
+  margin: 0;
+}
+
+form {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  max-width: 520px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.campo label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.campo input,
+.campo select {
+  padding: 0.55rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid var(--texto-suave);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--texto);
+}
+
+.error {
+  background: var(--error-fondo);
+  border-left: 5px solid var(--error-borde);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  max-width: 520px;
+}
+
+.error p {
+  margin: 0 0 0.25rem;
+  font-weight: 700;
+}
+
+.error ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.pie {
+  background: #e3eeeb;
+  border-top: 1px solid var(--borde);
+  padding: 1rem 1.25rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+.pie p {
+  margin: 0.15rem 0;
+}
+
+.solicitud {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 520px) {
+  .datos {
+    grid-template-columns: 1fr;
+  }
+}

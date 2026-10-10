@@ -1,0 +1,60 @@
+<p class="seccion"><%= seccion %></p>
+<h1>Nueva reserva</h1>
+
+<% if (errores.length > 0) { %>
+  <div class="error" role="alert">
+    <p>No se pudo crear la reserva. Revisa estos datos:</p>
+    <ul>
+      <% errores.forEach(function (error) { %>
+        <li><%= error %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>
+
+<form action="/reservas" method="post" novalidate>
+  <div class="campo">
+    <label for="estudiante">Nombre del estudiante</label>
+    <input type="text" id="estudiante" name="estudiante" value="<%= datos.estudiante %>" required>
+  </div>
+
+  <div class="campo">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" value="<%= datos.email %>" required>
+  </div>
+
+  <div class="campo">
+    <label for="sala">Sala</label>
+    <select id="sala" name="sala" required>
+      <option value="">Elige una sala</option>
+      <% salas.forEach(function (sala) { %>
+        <option value="<%= sala %>" <%= datos.sala === sala ? "selected" : "" %>><%= sala %></option>
+      <% }); %>
+    </select>
+  </div>
+
+  <div class="campo">
+    <label for="fecha">Fecha</label>
+    <input type="date" id="fecha" name="fecha" value="<%= datos.fecha %>" required>
+  </div>
+
+  <div class="campo">
+    <label for="turno">Turno</label>
+    <select id="turno" name="turno" required>
+      <option value="">Elige un turno</option>
+      <% turnos.forEach(function (turno) { %>
+        <option value="<%= turno %>" <%= datos.turno === turno ? "selected" : "" %>><%= turno %></option>
+      <% }); %>
+    </select>
+  </div>
+
+  <div class="campo">
+    <label for="personas">Cantidad de personas (de 1 a 6)</label>
+    <input type="number" id="personas" name="personas" min="1" max="6" value="<%= datos.personas %>" required>
+  </div>
+
+  <div class="acciones">
+    <button type="submit" class="boton">Reservar</button>
+    <a class="boton secundario" href="/reservas">Cancelar</a>
+  </div>
+</form>
